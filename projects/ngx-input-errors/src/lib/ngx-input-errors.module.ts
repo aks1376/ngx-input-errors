@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NgxInputErrorsComponent } from './ngx-input-errors.component';
-
-
+import { InputErrorsDirective } from './input-errors.directive';
 
 @NgModule({
-  declarations: [NgxInputErrorsComponent],
+  declarations: [InputErrorsDirective],
   imports: [
   ],
-  exports: [NgxInputErrorsComponent]
+  exports: [InputErrorsDirective]
 })
 export class NgxInputErrorsModule { }
