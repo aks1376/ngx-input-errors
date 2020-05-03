@@ -1,5 +1,6 @@
-import { Directive, ElementRef, Input, HostBinding } from '@angular/core';
+import { Directive, ElementRef, Input, HostBinding, Optional } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { LibConfig } from './lib-config';
 
 @Directive({
   selector: '[ngxInputErrors]'
@@ -7,10 +8,11 @@ import { FormGroup } from '@angular/forms';
 export class InputErrorsDirective {
 
   message = '';
+  private errorMessages: { [key: string]: any };
 
-  @Input() controlName;
+  @Input() controlName: string;
   @Input() displayName = '';
-  @Input() language = 'en';
+  @Input() language: string;
 
   @Input('form') set form(form: FormGroup) {
     const formControl = form.get(this.controlName);
@@ -27,29 +29,39 @@ export class InputErrorsDirective {
 
   @HostBinding('class.invalid') inValid: boolean;
 
-  errorMessages: { [key: string]: any } = {
-    en: {
-      required: (displayName: string) => `${displayName} is required`,
-      maxlength: (displayName: string, errors) => `${displayName} max length is: ${errors.maxlength.requiredLength}`,
-      minlength: (displayName: string, errors) => `${displayName} min length is: ${errors.minlength.requiredLength}`,
-      max: (displayName: string, errors) => `${displayName} max value is: ${errors.max.max}`,
-      min: (displayName: string, errors) => `${displayName} min value is: ${errors.min.min}`,
-      email: (displayName) => `${displayName} is not valid`
-    }
-  };
+  constructor(@Optional() private readonly config: LibConfig, private el: ElementRef<HTMLParagraphElement>) {
+    this.configProps();
+  }
 
-  constructor(private el: ElementRef<HTMLParagraphElement>) { }
+  /**
+   * config language and check error message is exist
+   */
+  configProps(): void {
+    // if user doesn't set language, we use default language in module config
+    if (!this.language) {
+      if (!this.config.defaultLanguage) {
+        throw new Error('you don\'t set default language for error messages ');
+      }
+      this.language = this.config.defaultLanguage;
+    }
+
+    if (this.config.errorMessages) {
+      this.errorMessages = this.config.errorMessages;
+    } else {
+      throw new Error('error messages is not set');
+    }
+  }
 
   /**
    * check the form control state
    * @param formControl reactive form formControl
    */
-  checkValidation(formControl) {
+  checkValidation(formControl): void {
+
     if (formControl.invalid && formControl.errors) {
       let message = '';
       const errors = formControl.errors;
       message = this.extractError(this.errorMessages, errors, this.language, this.displayName);
-      message = message ? message : `${this.displayName} is not valid`;
       this.message = message;
       this.el.nativeElement.innerText = message;
       this.inValid = true;
@@ -67,11 +79,14 @@ export class InputErrorsDirective {
    * @param language the language of the error that we want to extract
    * @param displayName the display input name for user
    */
-  extractError(errorMessages: { [key: string]: string }, errors, language: string, displayName: string): string {
+  extractError(errorMessages: { [language: string]: { [error: string]: any } }, errors, language: string, displayName: string): string {
     const messages = errorMessages[language];
     let error;
     if (!messages) {
       throw new Error(`unable to find language of ${language} in error messages`);
+    }
+    if (!messages.defaultMessage) {
+      throw new Error(`default message property in ${language} is missing`);
     }
     /**
      * for example the key of errors is required
@@ -81,9 +96,7 @@ export class InputErrorsDirective {
      */
     Object.keys(errors).forEach(key => {
       const errorFunction = messages[key];
-      if (errorFunction) {
-        error = errorFunction(displayName, errors);
-      }
+      error = errorFunction ? errorFunction(displayName, errors) : messages.defaultMessage(displayName);
     });
     return error;
   }
