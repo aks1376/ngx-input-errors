@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <input type="text" formControlName="firstName" placeholder="first name">
+  <div ngxInputErrors [form]="form" controlName="firstName" displayName="first name"
+    *ngIf="form.get('firstName').touched"></div>
+  <br>
+  <input type="text" formControlName="lastName" placeholder="last name">
+  <div ngxInputErrors [form]="form" controlName="lastName" displayName="last name" *ngIf="form.get('lastName').touched">
+  </div>
+  <br>
+  <input type="number" formControlName="age" placeholder="age">
+  <div ngxInputErrors [form]="form" controlName="age" displayName="age" *ngIf="form.get('age').touched"></div>
+  <br>
+  <input type="text" formControlName="description" placeholder="description">
+  <div ngxInputErrors [form]="form" controlName="description" displayName="description"
+    *ngIf="form.get('description').touched"></div>
+  <br>
+  <button type="submit">SEND</button>
+</form>

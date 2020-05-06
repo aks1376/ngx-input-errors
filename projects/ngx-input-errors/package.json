@@ -1,7 +1,7 @@
 {
   "name": "ngx-input-errors",
-  "version": "0.0.1",
-  "description": "this is an angular library",
+  "version": "1.0.0",
+  "description": "this library implement for angular reactive form to extract input validation error messages automatic with our customs messages and different languages",
   "author": "Ali Karimi",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "url": "https://github.com/aks1376/ngx-input-errors/issues"
   },
   "homepage": "https://github.com/aks1376/ngx-input-errors",
-  "keywords": ["Angular", "validation", "ReactiveForm", "errors"],
+  "keywords": ["Angular", "validation", "ReactiveForm", "errors", "input"],
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^9.1.4",
