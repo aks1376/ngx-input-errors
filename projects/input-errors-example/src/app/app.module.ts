@@ -9,6 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxInputErrorsModule } from 'ngx-input-errors';
 
+import { RouterModule, Routes } from '@angular/router';
+import { InputFormComponent } from './input-form/input-form.component';
+import { UserInputComponent } from './lazy-module/user-input/user-input.component';
+
 const errorMessages = {
   en: {
     defaultMessage: (displayName) => `${displayName} is not valid`,
@@ -25,9 +29,19 @@ const errorMessages = {
   }
 };
 
+const routes: Routes = [
+  {
+    path: '', component: AppComponent, children: [
+      { path: '', component: InputFormComponent }
+    ]
+  },
+  { path: 'fm', loadChildren: () => import('./lazy-module/lazy.module').then(mod => mod.LazyModule) }
+];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InputFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +50,8 @@ const errorMessages = {
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
-
+    MatButtonModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

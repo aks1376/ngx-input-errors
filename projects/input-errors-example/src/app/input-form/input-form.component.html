@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <input type="text" formControlName="firstName" placeholder="first name">
+    <div ngxInputErrors [form]="form" controlName="firstName" displayName="first name"
+      *ngIf="form.get('firstName').touched"></div>
+    <br>
+    <input type="text" formControlName="lastName" placeholder="last name">
+    <div ngxInputErrors [form]="form" controlName="lastName" displayName="last name" *ngIf="form.get('lastName').touched">
+    </div>
+    <br>
+    <input type="number" formControlName="age" placeholder="age">
+    <div ngxInputErrors [form]="form" controlName="age" displayName="age" *ngIf="form.get('age').touched"></div>
+    <br>
+    <input type="text" formControlName="description" placeholder="description">
+    <div ngxInputErrors [form]="form" controlName="description" displayName="description"
+      *ngIf="form.get('description').touched"></div>
+    <br>
+    <button type="submit">SEND</button>
+  </form>
+  <br>
+  <hr>
+  <br>
+  
+  <form [formGroup]="matForm" (ngSubmit)="matSubmit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Email">
+      <mat-error ngxInputErrors [form]="matForm" controlName="email" displayName="email" language="en"></mat-error>
+    </mat-form-field>
+  
+    <div formGroupName="address">
+  
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" placeholder="Street">
+        <mat-error ngxInputErrors [form]="nestedForm" controlName="street" displayName="street"></mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" placeholder="City">
+        <mat-error ngxInputErrors [form]="nestedForm" controlName="city" displayName="city"></mat-error>
+      </mat-form-field>
+  
+    </div>
+    <button mat-raised-button color="primary">SUBMIT</button>
+  </form>
+  
+  <br><br><br>

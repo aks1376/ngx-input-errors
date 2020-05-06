@@ -12,17 +12,18 @@ import { LibConfig } from './lib-config';
 })
 export class NgxInputErrorsModule {
 
-  constructor(@Optional() @SkipSelf() parentModule?: NgxInputErrorsModule) {
-    if (parentModule) {
-      throw new Error(
-        'NgxInputErrorsModule is already loaded. Import it in the AppModule only');
-    }
-  }
+  constructor(@Optional() @SkipSelf() parentModule?: NgxInputErrorsModule) { }
 
   static forRoot(config: LibConfig): ModuleWithProviders {
     return {
       ngModule: NgxInputErrorsModule,
       providers: [{ provide: LibConfig, useValue: config }]
-    }
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: NgxInputErrorsModule
+    };
   }
 }
