@@ -1,12 +1,29 @@
-import { NgModule } from '@angular/core';
-import { NgxInputErrorsComponent } from './ngx-input-errors.component';
-
-
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
+import { InputErrorsDirective } from './input-errors.directive';
+import { FormsModule } from '@angular/forms';
+import { LibConfig } from './lib-config';
 
 @NgModule({
-  declarations: [NgxInputErrorsComponent],
+  declarations: [InputErrorsDirective],
   imports: [
+    FormsModule,
   ],
-  exports: [NgxInputErrorsComponent]
+  exports: [InputErrorsDirective]
 })
-export class NgxInputErrorsModule { }
+export class NgxInputErrorsModule {
+
+  constructor(@Optional() @SkipSelf() parentModule?: NgxInputErrorsModule) { }
+
+  static forRoot(config: LibConfig): ModuleWithProviders {
+    return {
+      ngModule: NgxInputErrorsModule,
+      providers: [{ provide: LibConfig, useValue: config }]
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: NgxInputErrorsModule
+    };
+  }
+}

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxInputErrorsComponent } from './ngx-input-errors.component';
+import { InputFormComponent } from './input-form.component';
 
-describe('NgxInputErrorsComponent', () => {
-  let component: NgxInputErrorsComponent;
-  let fixture: ComponentFixture<NgxInputErrorsComponent>;
+describe('InputFormComponent', () => {
+  let component: InputFormComponent;
+  let fixture: ComponentFixture<InputFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxInputErrorsComponent ]
+      declarations: [ InputFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxInputErrorsComponent);
+    fixture = TestBed.createComponent(InputFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
