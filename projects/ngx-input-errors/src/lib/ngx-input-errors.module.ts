@@ -14,14 +14,14 @@ export class NgxInputErrorsModule {
 
   constructor(@Optional() @SkipSelf() parentModule?: NgxInputErrorsModule) { }
 
-  static forRoot(config: LibConfig): ModuleWithProviders {
+  static forRoot(config: LibConfig): ModuleWithProviders<NgxInputErrorsModule> {
     return {
       ngModule: NgxInputErrorsModule,
       providers: [{ provide: LibConfig, useValue: config }]
     };
   }
 
-  static forChild(): ModuleWithProviders {
+  static forChild(): ModuleWithProviders<NgxInputErrorsModule> {
     return {
       ngModule: NgxInputErrorsModule
     };
