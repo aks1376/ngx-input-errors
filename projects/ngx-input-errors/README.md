@@ -142,7 +142,7 @@ export class UserComponent {
 
 ### Add ngxInputErrors To Template
 
-``` HTML
+``` html
     <form [formGroup]="userForm">
 
         <mat-form-field style="text-align: right;" dir="rtl">
@@ -186,7 +186,7 @@ in first input i want show `Farsi` error message so i added `language="fa"`
 
 For simple input you just need to add `ngxInputErrors` directive to your element then bind its properties 
 
-``` HTML
+``` html
 <form [formGroup]="userForm">
     <input type="text" formControlName="name" placeholder="name">
     <div ngxInputErrors [form]="userForm" controlName="name" displayName="name" *ngIf="userForm.get('name').touched"></div>
@@ -199,7 +199,7 @@ For simple input you just need to add `ngxInputErrors` directive to your element
 
 If you use Angular material design
 
-``` HTML
+``` html
 <form [formGroup]="userForm">
     <mat-form-field>
         <mat-label> Email </mat-label>
