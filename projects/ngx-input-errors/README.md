@@ -13,7 +13,7 @@ Features include:
 
 ## Demo
 
-visit [Demo](https://stackblitz.com/github/aks1376/ngx-input-errors-sample)
+visit [Demo](https://aks1376.github.io/ngx-input-errors-sample/)
 
 ## Installation And Setup
 
