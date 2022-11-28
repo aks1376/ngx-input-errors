@@ -1,0 +1,54 @@
+<section class="material-form">
+  <h1>Register New User (Material)</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Email">
+      <mat-error ngxInputErrors [form]="form" controlName="email" displayName="Email"></mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name">
+      <mat-error ngxInputErrors [form]="form" controlName="name" displayName="Name"></mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Family</mat-label>
+      <input type="text" matInput formControlName="family">
+      <mat-error ngxInputErrors [form]="form" controlName="family" displayName="Family"></mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Telephone</mat-label>
+      <input type="number" matInput formControlName="telephone">
+      <mat-error ngxInputErrors [form]="form" controlName="telephone" displayName="Telephone"></mat-error>
+    </mat-form-field>
+
+    <div formGroupName="address">
+      <h2>Address</h2>
+
+      <mat-form-field class="ms-2">
+        <mat-label>Country</mat-label>
+        <input type="text" matInput formControlName="country">
+        <mat-error ngxInputErrors [form]="addressForm" controlName="country" displayName="Country"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="ms-2">
+        <mat-label>City</mat-label>
+        <input type="text" matInput formControlName="city" placeholder="City">
+        <mat-error ngxInputErrors [form]="addressForm" controlName="city" displayName="city"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="ms-2">
+        <mat-label>Street</mat-label>
+        <input type="text" matInput formControlName="street" placeholder="Street">
+        <mat-error ngxInputErrors [form]="addressForm" controlName="street" displayName="street"></mat-error>
+      </mat-form-field>
+
+
+    </div>
+    <button mat-raised-button color="primary">Register</button>
+  </form>
+</section>
