@@ -8,88 +8,102 @@
       <input type="email" formControlName="email" class="form-control" id="InputEmail"
              aria-describedby="emailHelp" placeholder="example@gmail.com">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      @if (form.get('email')?.touched) {
       <div class="invalid-feedback"
-           style="display: block;"
-           *ngIf="form.get('email')?.touched"
+           style="display: block"
            ngxInputErrors
            [form]="form"
            controlName="email"
-           displayName="email"></div>
+           displayName="email">
+      </div>
+      }
     </div>
 
     <div class="mb-3 has-validation">
       <label for="InputName" class="form-label">Name</label>
       <input type="text" formControlName="name" class="form-control" id="InputName">
+      @if (form.get('name')?.touched) {
       <div class="invalid-feedback"
-           style="display: block;"
-           *ngIf="form.get('name')?.touched"
+           style="display: block"
            ngxInputErrors
            [form]="form"
            controlName="name"
-           displayName="Name"></div>
+           displayName="Name">
+      </div>
+      }
     </div>
 
     <div class="mb-3 has-validation">
       <label for="InputFamily" class="form-label">Family</label>
       <input type="text" formControlName="family" class="form-control" id="InputFamily">
+      @if (form.get('family')?.touched) {
       <div class="invalid-feedback"
-           style="display: block;"
-           *ngIf="form.get('family')?.touched"
+           style="display: block"
            ngxInputErrors
            [form]="form"
            controlName="family"
-           displayName="Family"></div>
+           displayName="Family">
+      </div>
+      }
     </div>
 
     <div class="mb-3 has-validation">
       <label for="InputTelephone" class="form-label">Telephone</label>
       <input type="number" formControlName="telephone" class="form-control" id="InputTelephone">
+      @if (form.get('telephone')?.touched) {
       <div class="invalid-feedback"
-           style="display: block;"
-           *ngIf="form.get('telephone')?.touched"
+           style="display: block"
            ngxInputErrors
            [form]="form"
            controlName="telephone"
-           displayName="Telephone"></div>
+           displayName="Telephone">
+      </div>
+      }
     </div>
 
     <div formGroupName="address">
       <h2>Address</h2>
-      
+
       <div class="ms-2 mb-3 has-validation">
         <label for="InputCountry" class="form-label">Country</label>
         <input type="text" formControlName="country" class="form-control" id="InputCountry">
+        @if (form.get('country')?.touched) {
         <div class="invalid-feedback"
-             style="display: block;"
-             *ngIf="form.get('country')?.touched"
+             style="display: block"
              ngxInputErrors
              [form]="form"
              controlName="country"
-             displayName="Country"></div>
+             displayName="Country">
+        </div>
+        }
       </div>
 
       <div class="ms-2 mb-3 has-validation">
         <label for="InputCity" class="form-label">City</label>
         <input type="text" formControlName="city" class="form-control" id="InputCity">
+        @if (form.get('city')?.touched) {
         <div class="invalid-feedback"
-             style="display: block;"
-             *ngIf="form.get('city')?.touched"
+             style="display: block"
              ngxInputErrors
              [form]="form"
              controlName="city"
-             displayName="City"></div>
+             displayName="City">
+        </div>
+        }
       </div>
 
       <div class="ms-2 mb-3 has-validation">
         <label for="InputStreet" class="form-label">Street</label>
         <input type="text" formControlName="street" class="form-control" id="InputStreet">
+        @if (form.get('street')?.touched) {
         <div class="invalid-feedback"
-             style="display: block;"
-             *ngIf="form.get('street')?.touched"
+             style="display: block"
              ngxInputErrors
              [form]="form"
              controlName="street"
-             displayName="Street"></div>
+             displayName="Street">
+        </div>
+        }
       </div>
     </div>
 

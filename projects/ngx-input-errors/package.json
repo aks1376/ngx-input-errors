@@ -1,6 +1,6 @@
 {
   "name": "ngx-input-errors",
-  "version": "15.0.2",
+  "version": "18.0.0",
   "description": "The ngx-input-errors library provides dynamic error messages for Angular Forms validations and automatic error extraction for displaying error messages.",
   "author": "Ali Karimi",
   "repository": {
@@ -14,10 +14,11 @@
   "keywords": ["Angular", "validation", "ReactiveForm", "errors", "input"],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "sideEffects": false
 }

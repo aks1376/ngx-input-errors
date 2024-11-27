@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NgxInputErrors } from 'projects/ngx-input-errors/src/input-errors.directive';
 
 @Component({
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
-  styleUrls: ['./material-form.component.scss']
+  styleUrls: ['./material-form.component.scss'],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    NgxInputErrors,
+    MatInputModule
+  ]
 })
 export class MaterialFormComponent {
 

@@ -36,7 +36,7 @@
         }
       }
     },
-    "ngxInputErrorsSample": {
+    "ngx-input-errors-sample": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -48,24 +48,26 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ngx-input-errors-sample",
             "index": "projects/ngx-input-errors-sample/src/index.html",
-            "main": "projects/ngx-input-errors-sample/src/main.ts",
+            "browser": "projects/ngx-input-errors-sample/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "projects/ngx-input-errors-sample/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-input-errors-sample/src/favicon.ico",
-              "projects/ngx-input-errors-sample/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-input-errors-sample/public"
+              }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "./projects/ngx-input-errors-sample/src/assets/bootstrap.min.css",
-              "projects/ngx-input-errors-sample/src/styles.scss"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "projects/ngx-input-errors-sample/src/styles.scss",
+              "./projects/ngx-input-errors-sample/src/assets/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -74,24 +76,21 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -100,19 +99,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngxInputErrorsSample:build:production"
+              "buildTarget": "ngx-input-errors-sample:build:production"
             },
             "development": {
-              "browserTarget": "ngxInputErrorsSample:build:development"
+              "buildTarget": "ngx-input-errors-sample:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "ngxInputErrorsSample:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -124,10 +120,13 @@
             "tsConfig": "projects/ngx-input-errors-sample/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-input-errors-sample/src/favicon.ico",
-              "projects/ngx-input-errors-sample/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngx-input-errors-sample/public"
+              }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "projects/ngx-input-errors-sample/src/styles.scss"
             ],
             "scripts": []

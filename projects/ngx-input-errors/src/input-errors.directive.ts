@@ -1,11 +1,12 @@
-import { Directive, ElementRef, Input, HostBinding, Optional } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
-import { LibConfig } from './lib-config';
+import { Directive, ElementRef, HostBinding, Input, Optional } from '@angular/core';
+import { AbstractControl, FormGroup } from '@angular/forms';
+import { ErrorMessages } from './provider';
 
 @Directive({
-  selector: '[ngxInputErrors]'
+  selector: '[ngxInputErrors]',
+  standalone: true
 })
-export class InputErrorsDirective {
+export class NgxInputErrors {
 
   message = '';
   private errorMessages!: { [key: string]: any };
@@ -17,12 +18,12 @@ export class InputErrorsDirective {
   @Input('form') set form(form: FormGroup) {
     const formControl = form.get(this.controlName);
 
-    if(formControl) {
+    if (formControl) {
       /**
        * check first validation when form control initialize
        */
       this.checkFormControlValidation(formControl);
-  
+
       formControl.statusChanges.subscribe(value => {
         this.checkFormControlValidation(formControl);
       });
@@ -33,8 +34,10 @@ export class InputErrorsDirective {
 
   @HostBinding('class.invalid') inValid!: boolean;
 
-  constructor(@Optional() private readonly config: LibConfig, private el: ElementRef<HTMLParagraphElement>) {
+  constructor(@Optional() private readonly config: ErrorMessages, private el: ElementRef<HTMLParagraphElement>) {
     this.initializeErrorMessageFromConfigFile();
+    console.log('lib config:');
+    console.log({ config });
   }
 
   /**

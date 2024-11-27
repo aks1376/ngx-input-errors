@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-
+import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NgxInputErrors } from 'projects/ngx-input-errors/src/public-api'
 @Component({
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
-  styleUrls: ['./bootstrap-form.component.scss']
+  styleUrls: ['./bootstrap-form.component.scss'],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    NgxInputErrors
+  ]
 })
 export class BootstrapFormComponent {
 

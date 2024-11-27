@@ -8,7 +8,7 @@ export const errorMessages = {
     min: (displayName: string, errors: any) => `${displayName} min value is: ${errors.min.min}`,
     email: (displayName: string) => `${displayName} is not valid`
   },
-  fa: {
+  persian: {
     defaultMessage: (displayName: string) => `${displayName} معتبر نمی باشد`,
     required: (displayName: string) => `${displayName} حتما باید تکمیل شود`,
   }

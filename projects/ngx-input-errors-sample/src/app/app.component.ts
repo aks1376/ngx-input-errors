@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
+import { HeaderComponent } from './home/header/header.component';
+import { UserRegistryComponent } from './home/user-registry/user-registry.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    UserRegistryComponent,
+    HeaderComponent
+  ]
 })
-export class AppComponent implements OnInit {
-  title = 'ngxInputErrorsSample';
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-  }
-}
+export class AppComponent { }
