@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { NgxInputErrors } from 'projects/ngx-input-errors/src/public-api'
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgxInputErrors } from 'projects/ngx-input-errors/src/public-api';
 @Component({
   selector: 'app-bootstrap-form',
   templateUrl: './bootstrap-form.component.html',
   styleUrls: ['./bootstrap-form.component.scss'],
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     NgxInputErrors
   ]
 })
 export class BootstrapFormComponent {
+
+  private fb = inject(FormBuilder);
 
   addressForm: FormGroup = this.fb.group({
     country: ['', [Validators.required, Validators.maxLength(10)]],
@@ -26,8 +27,6 @@ export class BootstrapFormComponent {
     telephone: [0, [Validators.required, Validators.min(6), Validators.max(24)]],
     address: this.addressForm
   });
-
-  constructor(private fb: FormBuilder) { }
 
   onSubmit() { }
 }

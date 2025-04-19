@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +9,6 @@ import { NgxInputErrors } from 'projects/ngx-input-errors/src/input-errors.direc
   selector: 'app-material-form',
   templateUrl: './material-form.component.html',
   styleUrls: ['./material-form.component.scss'],
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -19,6 +18,8 @@ import { NgxInputErrors } from 'projects/ngx-input-errors/src/input-errors.direc
   ]
 })
 export class MaterialFormComponent {
+
+  private fb = inject(FormBuilder);
 
   addressForm: FormGroup = this.fb.group({
     country: ['', [Validators.required, Validators.maxLength(10)]],
@@ -33,8 +34,6 @@ export class MaterialFormComponent {
     telephone: [0, [Validators.required, Validators.min(6), Validators.max(24)]],
     address: this.addressForm
   });
-
-  constructor(private fb: FormBuilder) { }
 
   onSubmit() { }
 
